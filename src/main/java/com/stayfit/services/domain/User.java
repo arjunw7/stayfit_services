@@ -1,11 +1,9 @@
 package com.stayfit.services.domain;
 
+import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -15,7 +13,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Size(min=2, message="Name should have atleast 2 characters")
@@ -128,11 +126,4 @@ public class User {
         this.paymentStatus = paymentStatus;
     }
 
-//    public Goal getGoal() {
-//        return goal;
-//    }
-//
-//    public void setGoal(Goal goal) {
-//        this.goal = goal;
-//    }
 }
