@@ -1,4 +1,10 @@
 package com.stayfit.services.domain;
 
-public class FrontdeskAdmin {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class FrontdeskAdmin extends User{
+
 }

@@ -1,4 +1,7 @@
 package com.stayfit.services.repository;
 
-public class FitnessCenterRepository {
+import com.stayfit.services.domain.FitnessCenter;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface FitnessCenterRepository extends JpaRepository<FitnessCenter, Integer> {
 }

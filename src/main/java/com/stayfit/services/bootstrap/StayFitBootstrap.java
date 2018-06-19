@@ -1,10 +1,7 @@
 package com.stayfit.services.bootstrap;
 
 import com.stayfit.services.domain.*;
-import com.stayfit.services.repository.ExerciseRepository;
-import com.stayfit.services.repository.GoalRepository;
-import com.stayfit.services.repository.UserRepository;
-import com.stayfit.services.repository.WorkoutRepository;
+import com.stayfit.services.repository.*;
 import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -36,6 +33,9 @@ public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEve
     @Autowired
     private GoalRepository goalRepository;
 
+    @Autowired
+    private FitnessCenterRepository fitnessCenterRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         Goal weightLoss = new Goal();
@@ -51,15 +51,23 @@ public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEve
         goalRepository.save(weightLoss);
         goalRepository.save(maintenance);
 
+        FitnessCenter frazerTown = new FitnessCenter();
+        frazerTown.setName("Frazer Town");
+        frazerTown.setAddress("243, Frazer Town, Outer Ring Road.");
+        frazerTown.setLocation("Bangalore");
+        fitnessCenterRepository.save(frazerTown);
+
         Member arjun = new Member();
         arjun.setName("Arjun");
         arjun.setDob(new Date());
         arjun.setGoal(weightGain);
+        arjun.setFitnessCenter(frazerTown);
 
         Member ved = new Member();
         ved.setName("Ved");
         ved.setDob(new Date());
         ved.setGoal(weightLoss);
+        ved.setFitnessCenter(frazerTown);
 
         userRepository.save(ved);
         userRepository.save(arjun);
