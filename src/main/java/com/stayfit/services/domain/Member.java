@@ -14,6 +14,18 @@ public class Member extends User {
 
     private String paymentStatus;
 
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
+    @ManyToOne
+
+    private Trainer trainer;
+
     public Membership getMembership() {
         return membership;
     }

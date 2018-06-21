@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 public class HeadTrainer extends User{
+
     @OneToMany
     private List<Trainer> trainers;
 

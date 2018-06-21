@@ -1,12 +1,9 @@
 package com.stayfit.services.controller;
 
 import com.stayfit.services.domain.User;
-import com.stayfit.services.repository.GoalRepository;
 import com.stayfit.services.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,12 +14,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private  GoalRepository goalRepository;
-
     @GetMapping("/users")
-    public List<User> retrieveUsers(){
+    public List<User> retrieveUsers() {
         return userRepository.findAll();
     }
-
 }
+

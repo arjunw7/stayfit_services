@@ -2,20 +2,14 @@ package com.stayfit.services.bootstrap;
 
 import com.stayfit.services.domain.*;
 import com.stayfit.services.repository.*;
-import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEvent>{
@@ -45,7 +39,7 @@ public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEve
         weightGain.setGoalType("Weight Gain");
 
         Goal maintenance = new Goal();
-        maintenance.setGoalType("Maintenance");
+        maintenance.setGoalType("Stay Healthy");
 
         goalRepository.save(weightGain);
         goalRepository.save(weightLoss);
@@ -57,17 +51,32 @@ public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEve
         frazerTown.setLocation("Bangalore");
         fitnessCenterRepository.save(frazerTown);
 
+        FitnessCenter indranagar = new FitnessCenter();
+        indranagar.setName("Indranagar");
+        indranagar.setAddress("100 Feet Road, Indranaga");
+        indranagar.setLocation("Bangalore");
+        fitnessCenterRepository.save(indranagar);
+
+        Trainer alan = new Trainer();
+        alan.setName("Alan");
+        alan.setDob(new Date());
+        alan.setDoj(new Date());
+        alan.setFitnessCenter(frazerTown);
+        userRepository.save(alan);
+
         Member arjun = new Member();
         arjun.setName("Arjun");
         arjun.setDob(new Date());
         arjun.setGoal(weightGain);
         arjun.setFitnessCenter(frazerTown);
+        arjun.setTrainer(alan);
 
         Member ved = new Member();
         ved.setName("Ved");
         ved.setDob(new Date());
         ved.setGoal(weightLoss);
         ved.setFitnessCenter(frazerTown);
+        ved.setTrainer(alan);
 
         userRepository.save(ved);
         userRepository.save(arjun);
