@@ -57,12 +57,28 @@ public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEve
         indranagar.setLocation("Bangalore");
         fitnessCenterRepository.save(indranagar);
 
+        HeadTrainer guru = new HeadTrainer();
+        guru.setName("Guru");
+        guru.setDob(new Date());
+        guru.setFitnessCenter(frazerTown);
+        userRepository.save(guru);
+
         Trainer alan = new Trainer();
         alan.setName("Alan");
         alan.setDob(new Date());
         alan.setDoj(new Date());
         alan.setFitnessCenter(frazerTown);
+        alan.setHeadTrainer(guru);
+
         userRepository.save(alan);
+
+        Trainer rahul = new Trainer();
+        rahul.setName("Rahul");
+        rahul.setDob(new Date());
+        rahul.setDoj(new Date());
+        rahul.setFitnessCenter(frazerTown);
+        rahul.setHeadTrainer(guru);
+        userRepository.save(rahul);
 
         Member arjun = new Member();
         arjun.setName("Arjun");

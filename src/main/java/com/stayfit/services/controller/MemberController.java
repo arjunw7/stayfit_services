@@ -31,7 +31,7 @@ public class MemberController {
     }
     @GetMapping("/membersByTrainerID/{id}")
     public List<Member> retrieveMemberByTrainerID(@PathVariable int id){
-        return memberRepository.findByTrainerId(id);
+        return memberRepository.findMemberByTrainerId(id);
     }
 
 

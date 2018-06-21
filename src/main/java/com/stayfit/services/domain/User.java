@@ -24,9 +24,9 @@ public class User {
 
     private String password;
 
+    @Size(min=10, message="Name should have atleast 2 characters")
     private String phone;
 
-    @Past
     private Date dob;
 
     private String profilePicture;
