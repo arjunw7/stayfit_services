@@ -1,24 +1,15 @@
 package com.stayfit.services.bootstrap;
 
 import com.stayfit.services.domain.*;
-import com.stayfit.services.repository.ExerciseRepository;
-import com.stayfit.services.repository.GoalRepository;
-import com.stayfit.services.repository.UserRepository;
-import com.stayfit.services.repository.WorkoutRepository;
-import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
+import com.stayfit.services.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEvent>{
@@ -36,6 +27,9 @@ public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEve
     @Autowired
     private GoalRepository goalRepository;
 
+    @Autowired
+    private FitnessCenterRepository fitnessCenterRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         Goal weightLoss = new Goal();
@@ -45,21 +39,60 @@ public class StayFitBootstrap implements ApplicationListener<ContextRefreshedEve
         weightGain.setGoalType("Weight Gain");
 
         Goal maintenance = new Goal();
-        maintenance.setGoalType("Maintenance");
+        maintenance.setGoalType("Stay Healthy");
 
         goalRepository.save(weightGain);
         goalRepository.save(weightLoss);
         goalRepository.save(maintenance);
 
+        FitnessCenter frazerTown = new FitnessCenter();
+        frazerTown.setName("Frazer Town");
+        frazerTown.setAddress("243, Frazer Town, Outer Ring Road.");
+        frazerTown.setLocation("Bangalore");
+        fitnessCenterRepository.save(frazerTown);
+
+        FitnessCenter indranagar = new FitnessCenter();
+        indranagar.setName("Indranagar");
+        indranagar.setAddress("100 Feet Road, Indranaga");
+        indranagar.setLocation("Bangalore");
+        fitnessCenterRepository.save(indranagar);
+
+        HeadTrainer guru = new HeadTrainer();
+        guru.setName("Guru");
+        guru.setDob(new Date());
+        guru.setFitnessCenter(frazerTown);
+        userRepository.save(guru);
+
+        Trainer alan = new Trainer();
+        alan.setName("Alan");
+        alan.setDob(new Date());
+        alan.setDoj(new Date());
+        alan.setFitnessCenter(frazerTown);
+        alan.setHeadTrainer(guru);
+
+        userRepository.save(alan);
+
+        Trainer rahul = new Trainer();
+        rahul.setName("Rahul");
+        rahul.setDob(new Date());
+        rahul.setDoj(new Date());
+        rahul.setFitnessCenter(frazerTown);
+        rahul.setHeadTrainer(guru);
+        userRepository.save(rahul);
+
         Member arjun = new Member();
         arjun.setName("Arjun");
         arjun.setDob(new Date());
         arjun.setGoal(weightGain);
+        arjun.setFitnessCenter(frazerTown);
+        arjun.setTrainer(alan);
 
         Member ved = new Member();
         ved.setName("Ved");
         ved.setDob(new Date());
         ved.setGoal(weightLoss);
+        ved.setFitnessCenter(frazerTown);
+        ved.setTrainer(alan);
 
         userRepository.save(ved);
         userRepository.save(arjun);
