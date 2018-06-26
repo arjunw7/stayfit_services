@@ -5,14 +5,9 @@ import com.stayfit.services.repository.ExerciseRepository;
 import com.stayfit.services.repository.GoalRepository;
 import com.stayfit.services.repository.UserRepository;
 import com.stayfit.services.repository.WorkoutRepository;
-import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
