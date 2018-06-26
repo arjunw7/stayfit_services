@@ -24,8 +24,9 @@ public class User {
 
     private String password;
 
+    @Size(min=10, message="Name should have atleast 2 characters")
     private String phone;
-    @Past
+
     private Date dob;
 
     private String profilePicture;
@@ -36,11 +37,10 @@ public class User {
 
     private Double bmi;
 
-    private String paymentStatus;
+    @ManyToOne
+    private FitnessCenter fitnessCenter;
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
     public void setId(Integer id) {
         this.id = id;
@@ -118,12 +118,12 @@ public class User {
         this.bmi = bmi;
     }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
+    public FitnessCenter getFitnessCenter() {
+        return fitnessCenter;
     }
 
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
+    public void setFitnessCenter(FitnessCenter fitnessCenter) {
+        this.fitnessCenter = fitnessCenter;
     }
 
 }
